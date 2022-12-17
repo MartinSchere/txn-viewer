@@ -13,6 +13,14 @@ const withPWA = require("next-pwa")({
 module.exports = withPWA({
   swcMinify: true,
   reactStrictMode: true,
+  webpack: (config) => {
+    config.experiments = {
+      asyncWebAssembly: true,
+      topLevelAwait: true,
+      layers: true, // optional, with some bundlers/frameworks it doesn't work without
+    };
+    return config;
+  },
   eslint: {
     dirs: ["src"],
   },
